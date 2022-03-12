@@ -4,11 +4,11 @@
   "name": "cors-proxy",
   "license": "MIT",
   "version": "1.0.0",
-  "url": "bugs",
-  "homepage": "https://github.com/owner/project#readme",
+  "url": "https://github.com/Fulldroper/cors-proxy/issues",
+  "homepage": "https://github.com/Fulldroper/cors-proxy#readme",
   "repository": {
     "type": "git",
-    "url": "https://github.com/npm/cli.git"
+    "url": "https://github.com/Fulldroper/cors-proxy.git"
   },
   "description": "Simple CORS Proxy Server [POST and GET] methods Allowed",
   "keywords": [
