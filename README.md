@@ -1,10 +1,10 @@
-#imple CORS Proxy Server [POST and GET] methods Allowed
-###- how to install?
+# Simple CORS Proxy Server [POST and GET] methods Allowed
+### - how to install?
 > 1. clone repozitory
 `git clone https://github.com/Fulldroper/cors-proxy.git`
 > 2. open folder
 `cd cors-proxy` 
-###- how to start server?
+### - how to start server?
 > 1. install packages
 `npm i`
 > 2. start server
@@ -22,10 +22,10 @@ Types descriptions:
 
 `type` - contain string with type of request. Allowed now types is `post` and `get`
 
-####of the listed types, only the type `site` is mandatory
+#### of the listed types, only the type `site` is mandatory
 
 
-###- how change port?
+### - how change port?
 > 1. Open file `package.json`
 > 2. Change `"config": {
     "port": "8080"
