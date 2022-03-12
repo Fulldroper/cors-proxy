@@ -1,0 +1,1 @@
+Simple CORS Proxy Server [POST and GET] methods Allowed
