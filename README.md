@@ -1,4 +1,4 @@
-###Simple CORS Proxy Server [POST and GET] methods Allowed
+#imple CORS Proxy Server [POST and GET] methods Allowed
 ###- how to install?
 > 1. clone repozitory
 `git clone https://github.com/Fulldroper/cors-proxy.git`
