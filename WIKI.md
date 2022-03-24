@@ -1,4 +1,4 @@
-##HOW to use?
+# HOW to use?
 
 Scheme of reqest.Allowed only over (get) reqest
 `http://server.com/?q=site&h=headers&t=type`
@@ -11,4 +11,4 @@ Types descriptions:
 
 `type` - contain string with type of request. Allowed now types is `post` and `get`
 
-####of the listed types, only the type `site` is mandatory
+#### of the listed types, only the type `site` is mandatory
