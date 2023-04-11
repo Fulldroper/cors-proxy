@@ -1,8 +1,8 @@
 {
-  "author": "Full_droper",
+  "author": "",
   "email": "full_droper@pm.me",
   "name": "cors-proxy",
-  "license": "MIT",
+  "license": "ISC",
   "version": "2.0.0",
   "url": "https://github.com/Fulldroper/cors-proxy/issues",
   "homepage": "https://github.com/Fulldroper/cors-proxy#readme",
@@ -22,9 +22,8 @@
     "start": "node .",
     "test": "nodemon --exec npm start"
   },
-  "author": "",
-  "license": "ISC",
   "dependencies": {
+    "@fastify/cors": "^8.2.1",
     "axios": "^1.3.5",
     "fastify": "^4.15.0"
   },

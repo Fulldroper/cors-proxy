@@ -20,6 +20,14 @@
   // setup gateway instance
   const gateway = await require("fastify")({ logger: DEBUG });
 
+  const methods = ALOWED.toLowerCase().split(", ")
+  
+  gateway.register(await require("@fastify/cors"), {
+    origin: true, // дозволяє запити з будь-якого джерела
+    methods, // дозволяє GET, PUT та POST запити
+    allowedHeaders: ['Content-Type'], // дозволяє заголовок Content-Type
+  })
+
   // main handler
   const main = async (r, s) => {
     const {
@@ -70,7 +78,7 @@
   }
 
   // setup allowed method for requests
-  ALOWED.toLowerCase().split(", ").forEach(method => gateway[method](ENTERPOINT, main))
+  methods.forEach(method => gateway[method](ENTERPOINT, main))
 
   // Run the server!
   gateway.listen({ port: Number(PORT), host: String(HOST) },ready)
