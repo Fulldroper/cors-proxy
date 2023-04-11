@@ -21,7 +21,7 @@
   const gateway = await require("fastify")({ logger: DEBUG });
 
   const methods = ALOWED.toLowerCase().split(", ")
-  
+
   gateway.register(await require("@fastify/cors"), {
     origin: true, // дозволяє запити з будь-якого джерела
     methods, // дозволяє GET, PUT та POST запити
@@ -55,6 +55,7 @@
 
     // CORS injection
     headers['Access-Control-Allow-Origin'] = "*"
+    headers['Origin'] = "*"
     
     await a(rd)
     .then(res => {
