@@ -14,7 +14,9 @@
 
 ### - How to use?
 
-make default requests to `/` path and set header `cors=url` with site url
+Make default requests to `/` path and set header `cors-url` with site url
+
+For ignore headers set header `cors-ignore` with array of headers will be deleted from request
 
 all methods, headers, params duplicated automatically
 

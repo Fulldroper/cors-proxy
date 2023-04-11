@@ -13,19 +13,21 @@
     PORT = 80,
     HOST = "0.0.0.0",
     DEBUG = false,
-    ALOWED = "POST, GET, PUT, DELETE, OPTIONS",
-    ENTERPOINT = "/"
+    ALOWED = "POST, GET, PUT, DELETE",
+    ENTERPOINT = "*"
   } = process.env;
 
   // setup gateway instance
-  const gateway = await require("fastify")({ logger: DEBUG });
-
-  const methods = ALOWED.toLowerCase().split(", ")
+  const gateway = await require("fastify")({ logger: DEBUG,  });
 
   gateway.register(await require("@fastify/cors"), {
     origin: true, // дозволяє запити з будь-якого джерела
-    methods, // дозволяє GET, PUT та POST запити
-    allowedHeaders: ['Content-Type'], // дозволяє заголовок Content-Type
+    methods: "*",
+    exposedHeaders: "*",
+    allowedHeaders: "*",
+    preflightContinue: false,
+    optionsSuccessStatus: 204,
+    credentials: true,
   })
 
   // main handler
@@ -34,10 +36,11 @@
       method,
       url,
       body = false,
+      params = false
     } = r;
 
     let { headers } = r;
-
+    
     // check if url is set
     if (!headers["cors-url"]) s.send({error: 500, msg: "'cors-url' not set in headers", description: "'cors-url' is site path"});
 
@@ -50,13 +53,15 @@
     // change hostname
     headers['host'] = URL.parse(headers["cors-url"]).hostname
 
+    // ignore headers checking
+    headers["cors-ignore"].toLowerCase().split(", ").forEach(header => delete headers[header]);
+
     // delete CORS-URL header for silent requests
     delete headers["cors-url"]
+    delete headers["origin"]
+    delete headers["referer"]
 
-    // CORS injection
-    headers['Access-Control-Allow-Origin'] = "*"
-    headers['Origin'] = "*"
-    
+    console.log(rd); 
     await a(rd)
     .then(res => {
       const {
@@ -64,13 +69,21 @@
         status,
         headers,
       } = res;
-
+      
+      // CORS injection
+      headers['Access-Control-Allow-Origin'] = "*"
+      
       s
         .code(status)
         .headers(headers)
         .send(data)
     })
-    .catch(console.log)
+    .catch(async e => {
+      s
+        .code(e.response.code)
+        .headers(e.response.headers)
+        .send(e.response.data)
+    })
   }
   
   // on ready server
@@ -79,7 +92,7 @@
   }
 
   // setup allowed method for requests
-  methods.forEach(method => gateway[method](ENTERPOINT, main))
+  ALOWED.toLowerCase().split(", ").forEach(method => gateway[method](ENTERPOINT, main))
 
   // Run the server!
   gateway.listen({ port: Number(PORT), host: String(HOST) },ready)
