@@ -13,7 +13,7 @@
     PORT = 80,
     HOST = "0.0.0.0",
     DEBUG = false,
-    ALOWED = "POST, GET, PUT, DELETE",
+    ALOWED = "POST, GET, PUT, DELETE, OPTIONS",
     ENTERPOINT = "/"
   } = process.env;
 
